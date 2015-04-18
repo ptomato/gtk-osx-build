@@ -137,13 +137,33 @@
 
   <autotools id="libgnome-keyring" autogenargs="--disable-tests"
 	     autogen-sh="configure">
-    <branch module="libgnome-keyring/3.6/libgnome-keyring-3.6.0.tar.xz"
-	    version="3.6.0" hash="sha256:6dca37fb7b37f800f498031ffe303a567410bec09a9bdd877a18865dafcc9830">
+    <branch module="libgnome-keyring/3.12/libgnome-keyring-3.12.0.tar.xz"
+	    version="3.12.0" hash="sha256:c4c178fbb05f72acc484d22ddb0568f7532c409b0a13e06513ff54b91e947783">
     </branch>
     <dependencies>
       <dep package="glib"/>
       <dep package="libgcrypt"/>
-      <dep package="libtasn1"/>
+      <dep package="dbus"/>
+    </dependencies>
+  </autotools>
+
+  <!-- without-gtk: it requires gtk-x11 -->
+  <autotools id="gcr" autogen-sh="configure" autogenargs="--without-gtk">
+    <branch module="gcr/3.14/gcr-3.14.0.tar.xz" version="3.14.0"
+            hash="sha256:2a2231147a01e2061f57fa9ca77557ff97bc6ceab028cee5528079f4b2fca63d"/>
+    <dependencies>
+      <dep package="p11-kit"/>
+      <dep package="libgcrypt"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="gnome-keyring" autogen-sh="configure">
+    <branch module="gnome-keyring/3.14/gnome-keyring-3.14.0.tar.xz"
+            hash="sha256:c7059516cc47192e8bc5f1095e8e57cd3388825a4584ea8ad67a97763b7c9040"
+            version="3.14.0"/>
+    <dependencies>
+      <dep package="gcr"/>
+      <dep package="libgcrypt"/>
       <dep package="dbus"/>
     </dependencies>
   </autotools>

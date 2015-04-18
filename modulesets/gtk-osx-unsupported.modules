@@ -116,11 +116,33 @@
   </cmake>
 
   <autotools id="libgnome-keyring">
-    <branch tag="3.6.0"/>
+    <branch/> <!-- deprecated, no more releases -->
     <dependencies>
       <dep package="glib"/>
       <dep package="libgcrypt"/>
-      <dep package="libtasn1"/>
+      <dep package="dbus"/>
+    </dependencies>
+  </autotools>
+
+  <!-- without-gtk: it requires gtk-x11, and documentation cannot be built
+  without gtk -->
+  <autotools id="gcr" autogenargs="--without-gtk --disable-gtk-doc">
+    <branch revision="master"/> <!-- no gnome-3-16 branch yet -->
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="p11-kit"/>
+      <dep package="libgcrypt"/>
+    </dependencies>
+    <after>
+      <dep package="gobject-introspection"/>
+    </after>
+  </autotools>
+
+  <autotools id="gnome-keyring">
+    <branch revision="master"/> <!-- no gnome-3-16 branch yet -->
+    <dependencies>
+      <dep package="gcr"/>
+      <dep package="libgcrypt"/>
       <dep package="dbus"/>
     </dependencies>
   </autotools>
