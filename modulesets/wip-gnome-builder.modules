@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE moduleset SYSTEM "moduleset.dtd">
+<?xml-stylesheet type="text/xsl" href="moduleset.xsl"?>
+<moduleset>
+  <repository type="git" name="git.gnome.org"
+              href="git://git.gnome.org/" default="yes"/>
+  <repository type="git" name="github" href="git://github.com/"/>
+  <repository type="tarball" name="llvm.org" href="http://llvm.org/releases/"/>
+  <repository type="svn" name="pcre.org" href="svn://vcs.exim.org/"
+              trunk-template="%(module)s/code/trunk"
+              branches-template="%(module)s/code/branches"
+              tags-template="%(module)s/code/tags"/>
+
+  <cmake id="libssh2">
+    <branch repo="github" module="libssh2/libssh2"/>
+  </cmake>
+
+  <cmake id="libgit2">
+    <branch repo="github" revision="maint/v0.22" module="libgit2/libgit2"/>
+    <dependencies>
+      <dep package="zlib"/>
+      <dep package="libssh2"/>
+    </dependencies>
+  </cmake>
+
+  <autotools id="libgit2-glib" autogenargs="--enable-ssh">
+    <branch/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="gobject-introspection"/>
+      <dep package="libgit2"/>
+      <dep package="python3"/>
+    </dependencies>
+  </autotools>
+
+  <cmake id="libarchive">
+    <branch repo="github" module="libarchive/libarchive"/>
+    <dependencies>
+      <dep package="zlib"/>
+      <dep package="libnettle"/>
+      <dep package="libxml2"/>
+    </dependencies>
+  </cmake>
+
+  <autotools id="appstream-glib"
+             autogenargs="--disable-builder --disable-dep11 --disable-gtk-doc">
+    <branch repo="github" module="hughsie/appstream-glib"/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="libarchive"/>
+      <dep package="libsoup"/>
+      <dep package="gdk-pixbuf"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="pcre"
+             autogen-template="%(srcdir)s/%(autogen-sh)s &amp;&amp; %(srcdir)s/configure --prefix %(prefix)s %(autogenargs)s">
+    <branch repo="pcre.org"/>
+  </autotools>
+
+  <!-- Needed for llvm-config but doesn't quite work. I installed llvm using
+       homebrew instead. -->
+  <!-- Note, you have to add -stdlib=libc++ to HandleLLVMOptions.cmake after
+  installing -->
+  <!--autotools id="llvm" autogenargs='--enable-cxx11 CXXFLAGS="-stdlib=libc++ $CXXFLAGS"'>
+    <branch repo="llvm.org" module="3.5.1/llvm-3.5.1.src.tar.xz"
+            version="3.5.1" checkoutdir="llvm-3.5.1.src"/>
+  </autotools-->
+
+  <autotools id="gnome-builder"
+             autogenargs="LLVM_CONFIG=/usr/local/opt/llvm/bin/llvm-config">
+    <branch/>
+    <dependencies>
+      <dep package="gtk+-3.0"/>
+      <dep package="glib"/>
+      <dep package="gtksourceview-gtk3"/>
+      <dep package="devhelp-gtk3"/>
+      <dep package="libgit2-glib"/>
+      <dep package="appstream-glib"/>
+      <dep package="pcre"/>
+      <dep package="gjs"/>
+      <dep package="python3"/>
+      <dep package="pygobject3"/>
+      <!--dep package="llvm"/-->
+    </dependencies>
+  </autotools>
+
+</moduleset>
