@@ -1,0 +1,13 @@
+--- a/Source/JavaScriptCore/shell/CMakeLists.txt	2014-12-31 13:24:53.000000000 -0700
++++ b/Source/JavaScriptCore/shell/CMakeLists.txt	2014-12-31 13:24:56.000000000 -0700
+@@ -8,6 +8,10 @@
+     WTF
+ )
+ 
++if (WTF_OS_MAC_OS_X)
++    list(APPEND JSC_LIBRARIES edit)
++endif ()
++
+ if ("${JavaScriptCore_LIBRARY_TYPE}" MATCHES "STATIC")
+     add_definitions(-DSTATICALLY_LINKED_WITH_JavaScriptCore)
+ endif ()

@@ -42,6 +42,25 @@ webkit1gtk:	webkit-140167-disable-netscape-api.patch
 			This patch is a workaround for a clang bug in XCode < 6.3. It can
 			be commented out for XCode 6.3 and later versions.
 
+webkit2gtk3:	webkit-144561-quartz-backend.patch
+			Unlikely to be merged unless WebKit gains a build bot
+			for WebKitGTK on OS X.
+		webkit-144560-platform-fixes.patch
+			Various fixes to disable OS X-specific functionality
+			that shouldn't get compiled into WebKitGTK.
+		webkit-127059-link-libedit-cmake.patch
+			Fixed in master, proposed for 2.10.1
+		webkit-144785-link-injected-bundle.patch
+			Languishing in Bugzilla
+		webkit-144555-disable-version-script.patch
+			Fixed in master, proposed for 2.10.1
+		webkit-144557-disable-whole-archive.patch
+			Almost fixed in master
+		webkit-148606-build-texture-mapper-gl-separately.patch
+			Languishing in Bugzilla
+		webkit-148607-include-stub-for-plugin-permission-request.patch
+			Languishing in Bugzilla
+
 GConf:		GConf-characters.patch Bug 161209. Unlikely ever to be fixed.
 
 Glade:		Glade-3-8-Bug-663492-Update-Mac-integration-bindings-to-.patch
