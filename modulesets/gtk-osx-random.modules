@@ -23,7 +23,6 @@
 	      cvsroot=":pserver:anonymous@gtkspell.cvs.sourceforge.net:/cvsroot/gtkspell"
 	      password=""/>
   <repository type="git" name="savannah" href="git://git.sv.gnu/org/"/>
-  <repository type="git" name="github" href="https://github.com"/>
   <repository type="tarball" name="boehm"
 	      href="http://www.hboem.info/"/>
 
@@ -148,7 +147,7 @@
   </autotools>
 
   <autotools id="gtksourceview-gtk3">
-    <branch revision="gnome-3-14" module="gtksourceview"/>
+    <branch revision="gnome-3-16" module="gtksourceview"/>
     <after>
       <dep package="meta-gtk-osx-bootstrap"/>
       <dep package="meta-gtk-osx-gtk3"/>
