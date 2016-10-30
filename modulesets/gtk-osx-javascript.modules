@@ -6,6 +6,8 @@
   <repository name="gnome" type="git" default="yes"
               href="git://git.gnome.org/"/>
   <repository name="mozilla" type="tarball" href="ftp://ftp.mozilla.org/pub/"/>
+  <repository name="mozilla-unofficial" type="tarball"
+              href="https://people.mozilla.org/~sstangl/"/>
 
   <metamodule id="meta-gtk-osx-javascript">
     <dependencies>
@@ -33,6 +35,27 @@
     <dependencies>
       <dep package="libffi"/>
       <dep package="nspr"/>
+    </dependencies>
+    <after>
+      <dep package="python"/>
+      <dep package="zlib"/>
+    </after>
+  </autotools>
+
+  <autotools id="mozjs31" autogen-sh="configure"
+             autogenargs="--with-system-nspr --with-system-zlib --enable-system-ffi --with-system-icu --enable-threadsafe --disable-tests">
+    <branch repo="mozilla-unofficial" module="mozjs-31.5.0.tar.bz2"
+            version="31.5.0" source-subdir="js/src">
+      <patch file="moz1046176.patch" strip="1"/>
+      <patch file="moz1021171.patch" strip="1"/>
+      <patch file="moz1037470.patch" strip="1"/>
+      <patch file="moz1119228.patch" strip="1"/>
+      <patch file="install-js-config-h.patch" strip="1"/>
+    </branch>
+    <dependencies>
+      <dep package="libffi"/>
+      <dep package="nspr"/>
+      <dep package="libicu"/>
     </dependencies>
     <after>
       <dep package="python"/>
