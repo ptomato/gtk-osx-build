@@ -186,6 +186,10 @@
             module="gettext/gettext-0.19.4.tar.xz" version="0.19.4"/>
   </autotools>
 
+  <autotools id="m4-common">
+    <branch repo="git.gnome.org"/>
+  </autotools>
+
   <metamodule id="meta-gtk-osx-bootstrap">
     <dependencies>
       <dep package="readline"/>
@@ -196,6 +200,7 @@
       <dep package="gettext-runtime"/>
       <dep package="hicolor-icon-theme"/>
       <dep package="gtk-doc"/>
+      <dep package="m4-common"/>
     </dependencies>
   </metamodule>
 
