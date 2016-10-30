@@ -136,6 +136,7 @@
     <after>
       <dep package="pango"/>
       <dep package="gobject-introspection"/>
+      <dep package="librsvg"/>
     </after>
   </autotools>
 
@@ -180,6 +181,8 @@
        meta-gtk-osx-freetype is built, so packages which require
        cairoft or cairofc should have meta-gtk-osx-freetype as a
        dependency. -->
+  <!-- FIXME gdk-pixbuf SVG loader (librsvg) needs cairo-fc. -->
+  <!-- Note: regenerate loaders.cache file with gdk-pixbuf-query-loaders. -->
   <autotools id="cairo"
              autogenargs="--enable-pdf --enable-quartz --disable-xlib --without-x">
     <branch repo="freedesktop" module="cairo" revision="1.14"/>
@@ -189,6 +192,7 @@
     <after>
       <dep package="meta-gtk-osx-bootstrap"/>
       <dep package="freetype-no-harfbuzz"/>
+      <dep package="fontconfig"/>
     </after>
   </autotools>
 

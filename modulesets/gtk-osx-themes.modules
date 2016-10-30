@@ -74,6 +74,7 @@
     <branch module="murrine"/>
   </autotools>
 
+  <!-- FIXME - installs its pixbufloader as .a, not .so -->
   <autotools id="librsvg" autogenargs="--disable-Bsymbolic">
     <branch module="librsvg"/>
     <dependencies>
