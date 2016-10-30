@@ -67,8 +67,8 @@
     </after>
   </metamodule>
 
-  <autotools id="glib">
-    <branch tag="glib-2-44"/>
+  <autotools id="glib" autogenargs="--disable-libmount --with-pcre=internal">
+    <branch tag="2.50.0"/> <!-- wtf, checked integer overflow macros don't work-->
     <dependencies>
       <dep package="libffi"/>
     </dependencies>
@@ -96,7 +96,7 @@
   </autotools>
 
   <autotools id="gobject-introspection">
-    <branch tag="gnome-3-16" module="gobject-introspection"/>
+    <branch/>
     <dependencies>
       <dep package="glib"/>
       <dep package="cairo"/>
@@ -156,7 +156,7 @@
 
   <autotools id="gtk+-3.0"
 	     autogenargs="--enable-quartz-backend --disable-colord  --enable-quartz-relocation">
-    <branch module="gtk+" checkoutdir="gtk+-3.0" revision="gtk-3-16"/>
+    <branch module="gtk+" checkoutdir="gtk+-3.0" revision="gtk-3-18"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="pango"/>
