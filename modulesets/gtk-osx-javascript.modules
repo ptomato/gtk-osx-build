@@ -19,7 +19,8 @@
     </after>
   </metamodule>
 
-  <autotools id="gjs" autogenargs="--enable-installed-tests">
+  <autotools id="gjs"
+             autogenargs="--enable-installed-tests --without-dbus-tests">
     <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="gobject-introspection"/>
